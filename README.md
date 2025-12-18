@@ -4,7 +4,8 @@ This project generates large-format, purely vector, procedurally generated meteo
 
 The algorithm was developed by studying a slice of the Muonionalusta meteorite, discovered in northern Sweden in 1906. Muonionalusta is an iron-nickel meteorite that exhibits a Widmanstätten pattern when etched, revealing interlocking crystalline phases formed by extremely slow cooling over millions of years.
 
-This generator models the statistical and structural properties visible in etched meteorite slices: - dominant crystallographic directions
+This generator models the statistical and structural properties visible in etched meteorite slices:
+- dominant crystallographic directions
 - layered cross-hatching
 - imperfect, double-etched strokes
 - missing material and discontinuities
@@ -32,21 +33,21 @@ A small set of dominant line orientations is defined (e.g. \~45°, \~135°, min
 
 ### 2. Parallel Stroke Fields
 
-For each direction: - an infinite set of nearly parallel lines is generated - spacing is randomized using a log-normal distribution - lines overshoot the page and are clipped implicitly
+For each direction: an infinite set of nearly parallel lines is generated, spacing is randomized using a log-normal distribution, lines overshoot the page and are clipped implicitly
 
-This mimics the irregular lamella spacing seen in etched iron--nickel alloys.
+This mimics the irregular lamella spacing seen in etched iron-nickel alloys.
 
 ### 3. Grain Modulation Field
 
 A low-frequency fractal noise field (FBM over value noise) is evaluated across the surface.
 
-This grain field modulates: - stroke width - stroke opacity - dropout probability - ghost-stroke offsets
+This grain field modulates: stroke width, stroke opacity, dropout probability, ghost-stroke offsets
 
 This produces large-scale "crystal regions" where texture coherently shifts.
 
 ### 4. Stroke Imperfection
 
-No line is perfectly straight: - lateral jitter is applied along the normal direction - jitter is smooth, not noisy, to avoid cartoon effects, additional "ghost strokes" are drawn nearby to simulate double-etching
+No line is perfectly straight: lateral jitter is applied along the normal direction, and jitter is smooth, not noisy, to avoid cartoon effects. Additional "ghost strokes" are drawn nearby to simulate double-etching
 
 ### 5. Material Loss / Etch Gaps
 
@@ -54,9 +55,9 @@ Segments of strokes are randomly dropped based on local grain intensity, produci
 
 ## Randomness and Reproducibility
 
-By default: - Each run uses a cryptographically strong random seed - You will never get the same output twice unless you use the same seed.
+By default: Each run uses a cryptographically strong random seed. You will never get the same output twice unless you use the same seed.
 
-For reproducibility: - You may supply an explicit `seed` - The seed used is printed after generation - Reusing the seed reproduces the pattern exactly
+For reproducibility: You may supply an explicit `seed`. The seed used is printed after generation. Reusing the seed reproduces the pattern exactly
 
 ## File Naming
 
@@ -82,7 +83,7 @@ pip install reportlab
 python meteorite.py
 ```
 
-The script will: - generate a new, unique pattern - write a timestamped PDF - print the output path and seed
+The script will: generate a new, unique pattern, write a timestamped PDF, print the output path and seed.
 
 ### Deterministic regeneration
 
